@@ -13,3 +13,20 @@ export function rollMany(count: number, sides: number): number[] {
 export function sum(rolls: number[]): number {
   return rolls.reduce((a, b) => a + b, 0);
 }
+
+/** Roll twice, keep the higher (sides must be ≥ 2 for this to matter). */
+export function rollWithAdvantage(sides: number): number {
+  return Math.max(roll(sides), roll(sides));
+}
+
+/** Smallest value in a roll batch (empty → undefined). */
+export function minRoll(rolls: number[]): number | undefined {
+  if (rolls.length === 0) return undefined;
+  return Math.min(...rolls);
+}
+
+/** Largest value in a roll batch (empty → undefined). */
+export function maxRoll(rolls: number[]): number | undefined {
+  if (rolls.length === 0) return undefined;
+  return Math.max(...rolls);
+}
