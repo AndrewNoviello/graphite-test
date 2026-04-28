@@ -24,3 +24,9 @@ export function minRoll(rolls: number[]): number | undefined {
   if (rolls.length === 0) return undefined;
   return Math.min(...rolls);
 }
+
+/** Largest value in a roll batch (empty → undefined). */
+export function maxRoll(rolls: number[]): number | undefined {
+  if (rolls.length === 0) return undefined;
+  return Math.max(...rolls);
+}

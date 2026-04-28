@@ -10,6 +10,15 @@ export function palette(size: number): string[] {
   return Array.from({ length: size }, () => randomHexColor());
 }
 
+/** Average luminance-ish intensity in 0–1 from #RRGGBB. */
+export function luminance(hex: string): number {
+  const n = Number.parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 0xff;
+  const g = (n >> 8) & 0xff;
+  const b = n & 0xff;
+  return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+}
+
 /** Pastel-ish tint by mixing hex with white. */
 export function wash(hex: string, amount = 0.35): string {
   const n = Number.parseInt(hex.slice(1), 16);

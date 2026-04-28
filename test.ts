@@ -1,5 +1,5 @@
 // Simple TypeScript code to generate random data for testing Graphite metrics
-// branch-1: baseline edits for restack experiments
+// branch-1: baseline edits for restack experiments (round 2)
 
 interface Metric {
   name: string;
@@ -20,7 +20,7 @@ class GraphiteTester {
       'cache.hit_rate',
     ];
     const name = names[Math.floor(Math.random() * names.length)];
-    const value = Math.random() * 100;
+    const value = Math.round((Math.random() * 100) * 100) / 100;
     const timestamp = Date.now();
     return { name, value, timestamp };
   }
@@ -32,6 +32,11 @@ class GraphiteTester {
 
   latest(count = 3): Metric[] {
     return this.metrics.slice(-count);
+  }
+
+  /** How many metrics recorded so far. */
+  totalCount(): number {
+    return this.metrics.length;
   }
 
   simulateMetrics(count: number): void {
