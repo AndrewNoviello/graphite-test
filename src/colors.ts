@@ -9,3 +9,14 @@ export function randomHexColor(): string {
 export function palette(size: number): string[] {
   return Array.from({ length: size }, () => randomHexColor());
 }
+
+/** Pastel-ish tint by mixing hex with white. */
+export function wash(hex: string, amount = 0.35): string {
+  const n = Number.parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 0xff;
+  const g = (n >> 8) & 0xff;
+  const b = n & 0xff;
+  const mix = (c: number) => Math.round(c + (255 - c) * amount);
+  const out = ((mix(r) << 16) | (mix(g) << 8) | mix(b)).toString(16);
+  return `#${out.padStart(6, "0")}`;
+}

@@ -10,7 +10,7 @@ class GraphiteTester {
   private metrics: Metric[] = [];
 
   generateRandomMetric(): Metric {
-    const names = ['cpu.usage', 'memory.usage', 'disk.io', 'network.latency'];
+    const names = ['cpu.usage', 'memory.usage', 'disk.io', 'network.latency', 'queue.depth'];
     const name = names[Math.floor(Math.random() * names.length)];
     const value = Math.random() * 100;
     const timestamp = Date.now();
@@ -20,6 +20,10 @@ class GraphiteTester {
   addMetric(metric: Metric): void {
     this.metrics.push(metric);
     console.log(`Metric added: ${metric.name} = ${metric.value} at ${new Date(metric.timestamp).toISOString()}`);
+  }
+
+  latest(count = 3): Metric[] {
+    return this.metrics.slice(-count);
   }
 
   simulateMetrics(count: number): void {
@@ -34,4 +38,4 @@ class GraphiteTester {
 
 // Usage example
 const tester = new GraphiteTester();
-tester.simulateMetrics(10);
+tester.simulateMetrics(7);
