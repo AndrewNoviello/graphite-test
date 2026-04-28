@@ -18,3 +18,9 @@ export function sum(rolls: number[]): number {
 export function rollWithAdvantage(sides: number): number {
   return Math.max(roll(sides), roll(sides));
 }
+
+/** Smallest value in a roll batch (empty → undefined). */
+export function minRoll(rolls: number[]): number | undefined {
+  if (rolls.length === 0) return undefined;
+  return Math.min(...rolls);
+}
