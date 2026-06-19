@@ -18,6 +18,17 @@ export function rollMany(count: number, sides: number): number[] {
   return Array.from({ length: count }, () => roll(sides));
 }
 
+export type DiceRoll = {
+  sides: number;
+  count: number;
+  results: number[];
+};
+
+export function rollBatch(count: number, sides: number): DiceRoll {
+  const results = rollMany(count, sides);
+  return { sides, count, results };
+}
+
 export function sum(rolls: number[]): number {
   return rolls.reduce((a, b) => a + b, 0);
 }
