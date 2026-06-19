@@ -6,6 +6,7 @@ interface Metric {
   value: number;
   timestamp: number;
   cheers: string;
+  optional: string;
 }
 
 class GraphiteTester {
