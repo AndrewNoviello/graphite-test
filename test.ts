@@ -5,6 +5,7 @@ interface Metric {
   name: string;
   value: number;
   timestamp: number;
+  cheers: string;
 }
 
 class GraphiteTester {
@@ -44,7 +45,7 @@ class GraphiteTester {
       const metric = this.generateRandomMetric();
       this.addMetric(metric);
       // Simulate delay
-      setTimeout(() => {}, Math.random() * 1000);
+      setTimeout(() => { }, Math.random() * 1000);
     }
   }
 }
